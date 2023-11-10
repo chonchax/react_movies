@@ -3,7 +3,7 @@
   min-width: 260px;
   max-width: 280px;
   height: 620px;
-  background: #060d2c;
+  background: $card;
   border-radius: 35px;
   margin: 5px;
   padding: 26px 15px 30px;
@@ -15,7 +15,7 @@
     position: absolute;
     height: 90px;
     width: 100%;
-    background: linear-gradient(180deg, rgba(195, 34, 34, 0) 0%, $black 55%);
+    background: linear-gradient(180deg, rgba(195, 34, 34, 0) 0%, $card 55%);
     left: 50%;
     transform: translateX(-50%);
     bottom: 0;
@@ -39,7 +39,7 @@
     line-height: 20px;
   }
   h5 {
-    color: $color-3;
+    color: $text-shadow;
     letter-spacing: 1px;
     font-size: 1.2rem;
     font-weight: 300;
@@ -59,7 +59,7 @@
     flex-wrap: wrap;
   }
   li {
-    background: #212040;
+    background: $app-bg;
     border-radius: 18px;
     padding: 0px 7px;
     margin: 0 4px 4px 0;
@@ -86,7 +86,7 @@
     }
   }
   .btn {
-    background: #546fe4;
+    background: $btn;
     position: absolute;
     bottom: 16px;
     left: 50%;
@@ -98,11 +98,12 @@
     cursor: pointer;
     transition: 0.2s;
     z-index: 50;
+    font-size: 1.025rem;
 
     &:hover {
-      background: #212040;
-      box-shadow: 0 0 10px #546ee4d2;
-      font-size: 1.025rem;
+      background: $hover-btn;
+      box-shadow: 0 0 10px $border-ring;
+      font-size: 1.1rem;
     }
   }
 }

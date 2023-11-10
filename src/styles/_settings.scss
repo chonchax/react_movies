@@ -10,11 +10,17 @@
 $font-1: "font-1", sans-serif;
 $font-2: "font-2", sans-serif;
 
-$color-1: #546fe4;
-$color-2: #212040;
+$app-bg: #0e1512;
+$card: #132d21;
 $color-3: rgb(100, 100, 100);
-$black: #060d2c;
-$white: rgb(238, 238, 238);
+$color-4: #060d2c;
+$white: #b1f1cb;
+$component-hover: #113b29;
+$component-active: #174933;
+$btn: #30a46c;
+$hover-btn: #33b074;
+$border-ring: #2f7c57;
+$text-shadow: #3dd68c;
 
 * {
   margin: 0;
@@ -24,7 +30,7 @@ $white: rgb(238, 238, 238);
 }
 
 body {
-  background: $color-2;
+  background: $app-bg;
   color: $white;
 }
 li {
