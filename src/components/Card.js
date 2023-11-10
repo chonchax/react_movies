@@ -78,14 +78,23 @@ const Card = ({ movie }) => {
     let storage = window.localStorage.movies
       ? window.localStorage.movies.split(",")
       : [];
-
     if (!storage.includes(movie.id.toString())) {
       storage.push(movie.id);
       window.localStorage.movies = storage;
     }
   };
 
-  console.log(movie);
+  const removeStorage = () => {
+    let storage = window.localStorage.movies
+      ? window.localStorage.movies.split(",")
+      : [];
+
+    if (storage.includes(movie.id.toString())) {
+      storage.splice(storage.indexOf(movie.id.toString()), 1);
+      window.localStorage.movies = storage;
+    }
+  };
+
   return (
     <div className="card">
       <img
@@ -105,12 +114,29 @@ const Card = ({ movie }) => {
           {Math.round(movie.vote_average * 10) / 10}/10 <span>⭐</span>
         </h4>
       ) : null}
-      <ul>{movie.genre_ids ? genreFinder() : null}</ul>
+      <ul>
+        {movie.genre_ids
+          ? genreFinder()
+          : movie.genres.map((genre) => <li key={genre}>{genre.name}</li>)}
+      </ul>
       {movie.overview ? <h3>Synopsis</h3> : ""}
       <p>{movie.overview}</p>
-      <div className="btn" onClick={() => addStorage()}>
-        Add to favorites
-      </div>
+      {movie.genre_ids ? (
+        <div className="btn" onClick={() => addStorage()}>
+          Add to Favorties
+        </div>
+      ) : (
+        <div
+          className="btn"
+          onClick={() => {
+            removeStorage();
+            window.location.reload();
+          }}
+        >
+          Remove from favorites
+        </div>
+      )}
+      Add to favorites
     </div>
   );
 };
