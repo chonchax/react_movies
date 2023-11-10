@@ -74,6 +74,17 @@ const Card = ({ movie }) => {
     return genreArray.map((genre) => <li key={genre}>{genre}</li>);
   };
 
+  const addStorage = () => {
+    let storage = window.localStorage.movies
+      ? window.localStorage.movies.split(",")
+      : [];
+
+    if (!storage.includes(movie.id.toString())) {
+      storage.push(movie.id);
+      window.localStorage.movies = storage;
+    }
+  };
+
   console.log(movie);
   return (
     <div className="card">
@@ -95,6 +106,11 @@ const Card = ({ movie }) => {
         </h4>
       ) : null}
       <ul>{movie.genre_ids ? genreFinder() : null}</ul>
+      {movie.overview ? <h3>Synopsis</h3> : ""}
+      <p>{movie.overview}</p>
+      <div className="btn" onClick={() => addStorage()}>
+        Add to favorites
+      </div>
     </div>
   );
 };
