@@ -96,7 +96,7 @@ const Card = ({ movie, onClick }) => {
       <ul>
         {movie.genre_ids
           ? genreFinder()
-          : movie.genres.map((genre) => <li key={genre}>{genre.name}</li>)}
+          : movie.genres.map((genre) => <li key={genre.id}>{genre.name}</li>)}
       </ul>
       {movie.overview ? <h3>Synopsis</h3> : ""}
       <p>{movie.overview}</p>
