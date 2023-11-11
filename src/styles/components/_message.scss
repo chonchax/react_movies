@@ -1,0 +1,40 @@
+.pop-up {
+  position: fixed;
+  right: 1rem;
+  top: 5rem;
+  height: 50px;
+  width: 420px;
+  text-align: center;
+  background: $btn;
+  border-radius: 76% 24% 90% 10% / 20% 85% 15% 80%;
+  box-shadow: 0 5px 10px $border-ring;
+  opacity: 1;
+  transform: translateX(0px);
+  transition: 1s ease-out;
+  z-index: 100;
+}
+.pop-up-container {
+  width: 100%;
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -45%);
+}
+
+.fa-times-circle {
+  position: absolute;
+  left: 2rem;
+  top: 0.7rem;
+  font-size: 1.7rem;
+  color: white;
+  text-shadow: 2px 2px 0px #333;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.fa-times-circle:hover {
+  color: rgb(211, 242, 251);
+  transform: translateX(-1px);
+}
+.fa-times-circle:active {
+  transform: scale(1.5);
+}

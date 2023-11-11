@@ -1,12 +1,48 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Card from "./Card";
+import Message from "./Message";
 
 const Form = () => {
   const apiKey = process.env.REACT_APP_TMDB_API_KEY;
   const [moviesData, setMoviesData] = useState([]);
   const [search, setSearch] = useState("batman");
   const [sortGoodBad, setSortGoodBad] = useState("");
+  const [message, setMessage] = useState(null);
+
+  const handleStorageAction = (action, movie) => {
+    if (action === "add") {
+      let storage = window.localStorage.movies
+        ? window.localStorage.movies.split(",")
+        : [];
+      if (!storage.includes(movie.id.toString())) {
+        storage.push(movie.id);
+        window.localStorage.movies = storage;
+        setMessage("Favorites successfully added");
+        setTimeout(() => {
+          setMessage(null);
+        }, 2000);
+      } else {
+        setMessage("Movie already in favorites");
+        setTimeout(() => {
+          setMessage(null);
+        }, 2000);
+      }
+    } else if (action === "remove") {
+      let storage = window.localStorage.movies
+        ? window.localStorage.movies.split(",")
+        : [];
+
+      if (storage.includes(movie.id.toString())) {
+        storage.splice(storage.indexOf(movie.id.toString()), 1);
+        window.localStorage.movies = storage;
+        setMessage("Favorites successfully removed");
+        setTimeout(() => {
+          setMessage(null);
+        }, 2000);
+      }
+    }
+  };
 
   useEffect(() => {
     axios
@@ -58,9 +94,14 @@ const Form = () => {
             return null;
           })
           .map((movie) => (
-            <Card movie={movie} key={movie.id} />
+            <Card
+              onClick={(action) => handleStorageAction(action, movie)}
+              movie={movie}
+              key={movie.id}
+            />
           ))}
       </div>
+      {message && <Message content={message} />}
     </div>
   );
 };

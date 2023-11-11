@@ -1,6 +1,6 @@
 import React from "react";
 
-const Card = ({ movie }) => {
+const Card = ({ movie, onClick }) => {
   const dateFormater = (date) => {
     let [year, month, day] = date.split("-");
     return `${day}/${month}/${year}`;
@@ -74,27 +74,6 @@ const Card = ({ movie }) => {
     return genreArray.map((genre) => <li key={genre}>{genre}</li>);
   };
 
-  const addStorage = () => {
-    let storage = window.localStorage.movies
-      ? window.localStorage.movies.split(",")
-      : [];
-    if (!storage.includes(movie.id.toString())) {
-      storage.push(movie.id);
-      window.localStorage.movies = storage;
-    }
-  };
-
-  const removeStorage = () => {
-    let storage = window.localStorage.movies
-      ? window.localStorage.movies.split(",")
-      : [];
-
-    if (storage.includes(movie.id.toString())) {
-      storage.splice(storage.indexOf(movie.id.toString()), 1);
-      window.localStorage.movies = storage;
-    }
-  };
-
   return (
     <div className="card">
       <img
@@ -122,21 +101,22 @@ const Card = ({ movie }) => {
       {movie.overview ? <h3>Synopsis</h3> : ""}
       <p>{movie.overview}</p>
       {movie.genre_ids ? (
-        <div className="btn" onClick={() => addStorage()}>
+        <div className="btn" onClick={() => onClick("add")}>
           Add to Favorties
         </div>
       ) : (
         <div
           className="btn"
           onClick={() => {
-            removeStorage();
-            window.location.reload();
+            onClick("remove");
+            setTimeout(() => {
+              window.location.reload();
+            }, 500);
           }}
         >
           Remove from favorites
         </div>
       )}
-      Add to favorites
     </div>
   );
 };
