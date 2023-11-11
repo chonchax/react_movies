@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Screen
 
-![home](https://github.com/{chonchax}/{react_movies}/blob/{main}/public/img/reactMovieHome.png)
+![home](https://github.com/chonchax/react_movies/blob/main/public/img/reactMovieHome.png)
 
 ### `npm start`
 
