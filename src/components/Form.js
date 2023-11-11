@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Card from "./Card";
 import Message from "./Message";
+import { manageFavorites } from "../commun/utils";
 
 const Form = () => {
   const apiKey = process.env.REACT_APP_TMDB_API_KEY;
@@ -10,38 +11,8 @@ const Form = () => {
   const [sortGoodBad, setSortGoodBad] = useState("");
   const [message, setMessage] = useState(null);
 
-  const handleStorageAction = (action, movie) => {
-    if (action === "add") {
-      let storage = window.localStorage.movies
-        ? window.localStorage.movies.split(",")
-        : [];
-      if (!storage.includes(movie.id.toString())) {
-        storage.push(movie.id);
-        window.localStorage.movies = storage;
-        setMessage("Favorites successfully added");
-        setTimeout(() => {
-          setMessage(null);
-        }, 2000);
-      } else {
-        setMessage("Movie already in favorites");
-        setTimeout(() => {
-          setMessage(null);
-        }, 2000);
-      }
-    } else if (action === "remove") {
-      let storage = window.localStorage.movies
-        ? window.localStorage.movies.split(",")
-        : [];
-
-      if (storage.includes(movie.id.toString())) {
-        storage.splice(storage.indexOf(movie.id.toString()), 1);
-        window.localStorage.movies = storage;
-        setMessage("Favorites successfully removed");
-        setTimeout(() => {
-          setMessage(null);
-        }, 2000);
-      }
-    }
+  const handleFavorites = (action, movie) => {
+    manageFavorites(action, movie, setMessage);
   };
 
   useEffect(() => {
@@ -95,7 +66,7 @@ const Form = () => {
           })
           .map((movie) => (
             <Card
-              onClick={(action) => handleStorageAction(action, movie)}
+              onClick={(action) => handleFavorites(action, movie)}
               movie={movie}
               key={movie.id}
             />
