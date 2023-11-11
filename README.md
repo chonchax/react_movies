@@ -2,9 +2,9 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Available Screen
 
-In the project directory, you can run:
+![home](https://github.com/{chonchax}/{react_movies}/blob/{main}/public/img/reactMovieHome.png)
 
 ### `npm start`
 
