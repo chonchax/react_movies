@@ -22,6 +22,14 @@ const Header = () => {
               Favorites
             </NavLink>
           </li>
+          <li>
+            <NavLink
+              to="/contact"
+              className={(nav) => (nav.isActive ? "nav-active" : "")}
+            >
+              Contact
+            </NavLink>
+          </li>
         </ul>
       </nav>
       <h1>React Movies</h1>
